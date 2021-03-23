@@ -9,30 +9,36 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.engmahdy.news.databinding.ActivityMainBinding
-import com.engmahdy.utils.getDarkModeEnabled
+import com.engmahdy.news.destinations.fragments.settingsfragment.SettingsRepository
+import com.engmahdy.utils.DataStoreManger
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var bottomNav: BottomNavigationView
+    private lateinit var settingsRepository: SettingsRepository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initRepository()
         initViews()
         setDarkMode()
         bottomNav.setupWithNavController(findNavController(R.id.nav_host_fragment))
 
     }
 
+    private fun initRepository() {
+        settingsRepository = SettingsRepository(DataStoreManger(this), this)
+    }
+
     private fun setDarkMode() {
         CoroutineScope(Dispatchers.Main).launch {
-            getDarkModeEnabled().collect {
+            settingsRepository.getDarkModeEnabled().collect {
                 setNightMode(it)
             }
         }

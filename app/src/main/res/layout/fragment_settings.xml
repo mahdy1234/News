@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/_8sdp"
-    tools:context=".destinations.fragments.SettingsFragment">
+    tools:context=".destinations.fragments.settingsfragment.SettingsFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
