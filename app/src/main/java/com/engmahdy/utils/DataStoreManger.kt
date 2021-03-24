@@ -5,7 +5,6 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
-import com.engmahdy.news.destinations.fragments.settingsfragment.SettingsFragment
 import com.engmahdy.utils.Constants.OPTION_DARK_MODE_KEY
 import com.engmahdy.utils.Constants.OPTION_LANGUAGE_KEY
 import kotlinx.coroutines.flow.map

@@ -4,13 +4,9 @@ import android.app.UiModeManager
 import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
 import com.engmahdy.utils.DataStoreManger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.awaitAll
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class SettingsRepository(
@@ -19,11 +15,10 @@ class SettingsRepository(
 ) {
 
     fun setDarkModeEnabled(enabled: Boolean) {
-        val coroutine =
-            CoroutineScope(Dispatchers.Main).launch {
-                dataStoreManger.setDarkModeEnabled(enabled)
-                setNightMode(enabled)
-            }
+        CoroutineScope(Dispatchers.Main).launch {
+            dataStoreManger.setDarkModeEnabled(enabled)
+            setNightMode(enabled)
+        }
     }
 
     fun getDarkModeEnabled() = dataStoreManger.getDarkModeEnabled()
